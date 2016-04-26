@@ -93,4 +93,10 @@ test-short: vet
 vet:
 	go vet ./...
 
+build-docker: prepare build-for-docker
+	docker build -t registry.devops.connectedfleet.io/influxdata/telegraf:$(VERSION) .
+
+publish-docker:
+	docker push registry.devops.connectedfleet.io/influxdata/telegraf:$(VERSION)
+
 .PHONY: test test-short vet build default
